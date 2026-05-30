@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DESIGN SYSTEM — "Pacific Blue" Agency Theme
+   White & Blue primary — Harmonious, Professional, Modern
+   ============================================================ */
+
+:root {
+  /* Core Palette */
+  --background: #ffffff;
+  --foreground: #0f172a;          /* Slate-900 — rich navy for headings */
+  --foreground-muted: #475569;    /* Slate-600 — body text */
+
+  /* Blue Primary System — Vibrant Blue 600 */
+  --accent: #2563eb;              /* Blue 600 — vibrant, professional primary */
+  --accent-light: #3b82f6;        /* Blue 500 — hover, interactive states */
+  --accent-dark: #1d4ed8;         /* Blue 700 — active states */
+  --accent-subtle: #eff6ff;       /* Blue 50 — tinted section backgrounds */
+  --accent-mid: #bfdbfe;          /* Blue 200 — card highlights, dividers */
+
+  /* Surface System */
+  --surface-0: #ffffff;           /* Page background */
+  --surface-1: #f8fafc;           /* Subtle section tint (Slate-50) */
+  --surface-2: #f1f5f9;           /* Card / inset background (Slate-100) */
+  --surface-dark: #0f172a;        /* Dark footer / navy panels */
+
+  /* Border */
+  --border: #e2e8f0;              /* Slate-200 — crisp, visible borders */
+  --border-strong: #cbd5e1;       /* Slate-300 — stronger dividers */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --color-accent-subtle: var(--accent-subtle);
+  --color-accent-mid: var(--accent-mid);
+  --color-surface-0: var(--surface-0);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-dark: var(--surface-dark);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --font-sans: var(--font-roboto), sans-serif;
+  --font-display: var(--font-roboto), sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Selection — Blue highlight, white text */
+::selection {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+/* ============================================================
+   CUSTOM SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--surface-1); }
+::-webkit-scrollbar-thumb { background: var(--accent-mid); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-light); }
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+
+/* Modern rounded corner defaults */
+.rounded-btn { border-radius: 12px; }
+.rounded-card { border-radius: 16px; }
+
+/* Outline stroke text — Navy on white */
+.stroke-text {
+  -webkit-text-stroke: 1.5px var(--accent);
+  color: transparent;
+}
+@media (min-width: 768px) {
+  .stroke-text { -webkit-text-stroke: 2.5px var(--accent); }
+}
+
+/* Blue gradient background for hero/CTA sections */
+.bg-blue-gradient {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #bfdbfe 100%);
+}
+
+/* Subtle blue tint pattern overlay */
+.bg-dot-pattern {
+  background-color: var(--surface-1);
+  background-image: radial-gradient(var(--accent-mid) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ============================================================
+   FLOATING BOBBING ANIMATIONS
+   ============================================================ */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes float-reverse {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(12px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float-slow {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-slower {
+  animation: float-reverse 7s ease-in-out infinite;
+}
+
+/* Arrow pointing animations */
+@keyframes slide-right {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(6px); }
+}
+
+@keyframes slide-down {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+.animate-slide-right {
+  animation: slide-right 1.5s ease-in-out infinite;
+}
+
+.animate-slide-down {
+  animation: slide-down 1.5s ease-in-out infinite;
+}
+
+/* Hero section loading indicator */
+@keyframes hero-progress {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+.animate-hero-progress {
+  animation: hero-progress 4.5s linear forwards;
+}
