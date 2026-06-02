@@ -26,7 +26,7 @@ import {
   Layers,
   TrendingUp,
   Shield,
-  ArrowDown,
+
   ShoppingBag,
   Building2,
   Palmtree,
@@ -35,8 +35,64 @@ import {
   Utensils
 } from "lucide-react";
 
+const PARTNERS = [
+  {
+    name: "DaNang Travel",
+    colorClass: "text-sky-500 bg-sky-50/30 border-sky-100/30 group-hover:bg-sky-50 group-hover:border-sky-200",
+    logo: (
+      <svg className="w-6 h-6 fill-current transition-transform duration-300" viewBox="0 0 24 24">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+      </svg>
+    )
+  },
+  {
+    name: "Mộc Spa & Boutique",
+    colorClass: "text-emerald-500 bg-emerald-50/30 border-emerald-100/30 group-hover:bg-emerald-50 group-hover:border-emerald-200",
+    logo: (
+      <svg className="w-6 h-6 fill-current transition-transform duration-300" viewBox="0 0 24 24">
+        <path d="M17 8C8 10 5.9 16.17 6 20c3.83.1 10-2 12-11 .7-3.15-.3-5.35-1-9-.75 3.65-1.75 5.85-2.1 8zm-8 4c-4.5 1-5.45 4.08-5.5 6 1.91.05 5-1 6-5.5.35-1.58-.15-2.68-.5-4.5-.38 1.83-.88 2.92-1.06 4z"/>
+      </svg>
+    )
+  },
+  {
+    name: "BĐS Hoà Xuân",
+    colorClass: "text-amber-600 bg-amber-50/30 border-amber-100/30 group-hover:bg-amber-50 group-hover:border-amber-200",
+    logo: (
+      <svg className="w-6 h-6 fill-current transition-transform duration-300" viewBox="0 0 24 24">
+        <path d="M19 9.3V4h-3v2.6L12 3 2 12h3v8h5v-6h4v6h5v-8h3L19 9.3zM10 10c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2z"/>
+      </svg>
+    )
+  },
+  {
+    name: "EduCenter Đà Nẵng",
+    colorClass: "text-blue-600 bg-blue-50/30 border-blue-100/30 group-hover:bg-blue-50 group-hover:border-blue-200",
+    logo: (
+      <svg className="w-6 h-6 fill-current transition-transform duration-300" viewBox="0 0 24 24">
+        <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+      </svg>
+    )
+  },
+  {
+    name: "The Coffee House",
+    colorClass: "text-orange-500 bg-orange-50/30 border-orange-100/30 group-hover:bg-orange-50 group-hover:border-orange-200",
+    logo: (
+      <svg className="w-6 h-6 fill-current transition-transform duration-300" viewBox="0 0 24 24">
+        <path d="M2 21h18v-2H2v2zM20 8h-2V5h2v3zm-4-5H4v14h12V3zm2 3h2v7h-2V6zm-6 4H6V8h6v2z"/>
+      </svg>
+    )
+  },
+  {
+    name: "TechCorp Global",
+    colorClass: "text-cyan-600 bg-cyan-50/30 border-cyan-100/30 group-hover:bg-cyan-50 group-hover:border-cyan-200",
+    logo: (
+      <svg className="w-6 h-6 fill-current transition-transform duration-300" viewBox="0 0 24 24">
+        <path d="M8.5 8.62L3.88 12l4.62 3.38v2.32L1.5 12l7-5.7v2.32zm7 0L22.5 12l-7 5.7v-2.32L20.12 12l-4.62-3.38v-2.32zM12 5c-3.87 0-7 3.13-7 7s3.13 7 7 7 7-3.13 7-7-3.13-7-7-7zm0 12c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/>
+      </svg>
+    )
+  }
+];
+
 export default function Home() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [activeService, setActiveService] = useState(0);
 
@@ -215,83 +271,6 @@ export default function Home() {
         </a>
       </div>
 
-      {/* ==================== 2. HEADER (Sticky & Crisp Navigation) ==================== */}
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          {/* Logo with targeted regional branding */}
-          <Link href="/" className="flex flex-col justify-center font-sans font-black text-[10px] sm:text-xs leading-none tracking-[0.15em] sm:tracking-[0.2em] hover:text-accent transition-colors">
-            <span className="text-slate-900">THIETKEWEBSITE</span>
-            <span className="text-accent mt-1">CODEBYDANANG</span>
-          </Link>
-
-          {/* Navigation Links */}
-          <nav className="hidden md:flex items-center space-x-10 font-sans text-xs tracking-wider font-bold">
-            <a href="#dich-vu" className="hover:text-accent transition-colors relative py-2 group">
-              DỊCH VỤ
-              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#bao-gia" className="hover:text-accent transition-colors relative py-2 group">
-              BẢNG GIÁ TRỌN GÓI
-              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <Link href="/portfolio" className="hover:text-accent transition-colors relative py-2 group">
-              KHO GIAO DIỆN
-              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full"></span>
-            </Link>
-            <Link href="/estimator" className="hover:text-accent transition-colors relative py-2 group">
-              TÍNH GIÁ ĐỘNG
-              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full"></span>
-            </Link>
-            <a href="#faq" className="hover:text-accent transition-colors relative py-2 group">
-              HỎI ĐÁP
-              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full"></span>
-            </a>
-          </nav>
-
-          {/* Call to action button */}
-          <div className="hidden md:block">
-            <Link
-              href="/estimator"
-              className="border-2 border-foreground hover:border-accent hover:bg-accent hover:text-white text-xs font-sans font-bold py-3 px-6 transition-all duration-300 rounded-full inline-block"
-            >
-              ĐĂNG KÝ TƯ VẤN
-            </Link>
-          </div>
-
-          {/* Mobile Menu Icon */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-foreground hover:text-accent focus:outline-none"
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
-          </button>
-        </div>
-
-        {/* Mobile menu drawer */}
-        {mobileMenuOpen && (
-          <div className="md:hidden absolute top-20 left-0 w-full bg-background border-b border-border py-8 px-6 flex flex-col space-y-6 font-sans font-bold text-base tracking-wider z-50">
-            <a href="#dich-vu" onClick={() => setMobileMenuOpen(false)} className="hover:text-accent transition-colors border-b border-border/50 pb-3">
-              DỊCH VỤ
-            </a>
-            <a href="#bao-gia" onClick={() => setMobileMenuOpen(false)} className="hover:text-accent transition-colors border-b border-border/50 pb-3">
-              BẢNG GIÁ TRỌN GÓI
-            </a>
-            <Link href="/portfolio" onClick={() => setMobileMenuOpen(false)} className="hover:text-accent transition-colors border-b border-border/50 pb-3">
-              KHO GIAO DIỆN
-            </Link>
-            <Link href="/estimator" onClick={() => setMobileMenuOpen(false)} className="hover:text-accent transition-colors border-b border-border/50 pb-3">
-              TÍNH GIÁ ĐỘNG
-            </Link>
-            <a href="#faq" onClick={() => setMobileMenuOpen(false)} className="hover:text-accent transition-colors border-b border-border/50 pb-3">
-              HỎI ĐÁP
-            </a>
-            <Link href="/estimator" onClick={() => setMobileMenuOpen(false)} className="bg-accent text-white text-center py-4 rounded-xl font-bold">
-              ĐĂNG KÝ TƯ VẤN
-            </Link>
-          </div>
-        )}
-      </header>
 
       {/* ==================== 3. HERO SECTION ==================== */}
       <section className="relative pt-24 pb-28 px-6 overflow-hidden max-w-7xl mx-auto w-full min-h-[calc(100vh-80px)] flex items-center bg-gradient-to-b from-slate-50/40 via-blue-50/15 to-slate-50/40 border-b border-border/40">
@@ -302,9 +281,6 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 w-full items-center z-10">
           {/* Left Column: Text Content */}
           <div className="lg:col-span-6 flex flex-col items-start text-left">
-            <span className="text-accent font-sans text-xs md:text-sm tracking-wider font-bold uppercase block mb-4">
-              🏆 #1 Digital Agency Tại Đà Nẵng
-            </span>
             <h1 className="font-sans font-bold text-4xl md:text-6xl lg:text-7xl leading-tight tracking-tight text-slate-900 mb-3">
               Thiết Kế Website <span className="text-accent">Đà Nẵng</span>
             </h1>
@@ -341,13 +317,13 @@ export default function Home() {
           </div>
 
           {/* Right Column: Visual Banners Staggered 4-Card Cascade (Diagonally arranged & auto-floating) */}
-          <div className="lg:col-span-6 relative w-full h-[460px] sm:h-[640px] lg:h-[500px] mt-12 lg:mt-0 grid grid-cols-2 gap-4 lg:block z-10">
+          <div className="lg:col-span-6 relative w-full h-[280px] sm:h-[420px] md:h-[500px] lg:h-[500px] mt-12 lg:mt-0 z-10 block">
             {/* Background dynamic light glow effect */}
             <div className="absolute inset-0 bg-accent/5 rounded-full blur-3xl -z-10 animate-pulse"></div>
 
             {/* Banner 1: Top-Left Card */}
             <div
-              className="relative lg:absolute lg:top-[0%] lg:left-[0%] lg:w-[47%] animate-float-slow bg-white border border-border/80 rounded-2xl shadow-xl overflow-hidden hover:scale-[1.04] hover:border-accent/40 transition-all duration-500 cursor-pointer group"
+              className="absolute top-[0%] left-[0%] w-[47%] animate-float-slow bg-white border border-border/80 rounded-2xl shadow-xl overflow-hidden hover:scale-[1.04] hover:border-accent/40 transition-all duration-500 cursor-pointer group"
               style={{ animationDelay: "0s" }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -360,7 +336,7 @@ export default function Home() {
 
             {/* Banner 2: Top-Right Card */}
             <div
-              className="relative lg:absolute lg:top-[5%] lg:right-[0%] lg:w-[47%] animate-float-slower bg-white border border-accent/15 rounded-2xl shadow-xl overflow-hidden hover:scale-[1.04] hover:border-accent/40 transition-all duration-500 cursor-pointer group"
+              className="absolute top-[6%] right-[0%] w-[47%] animate-float-slower bg-white border border-accent/15 rounded-2xl shadow-xl overflow-hidden hover:scale-[1.04] hover:border-accent/40 transition-all duration-500 cursor-pointer group"
               style={{ animationDelay: "1.5s" }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -373,7 +349,7 @@ export default function Home() {
 
             {/* Banner 3: Bottom-Left Card */}
             <div
-              className="relative lg:absolute lg:top-[30%] lg:left-[3%] lg:w-[47%] animate-float-slower bg-white border border-border/80 rounded-2xl shadow-xl overflow-hidden hover:scale-[1.04] hover:border-accent/40 transition-all duration-500 cursor-pointer group"
+              className="absolute top-[42%] lg:top-[30%] left-[3%] w-[47%] animate-float-slower bg-white border border-border/80 rounded-2xl shadow-xl overflow-hidden hover:scale-[1.04] hover:border-accent/40 transition-all duration-500 cursor-pointer group"
               style={{ animationDelay: "3s" }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -386,7 +362,7 @@ export default function Home() {
 
             {/* Banner 4: Bottom-Right Card */}
             <div
-              className="relative lg:absolute lg:top-[35%] lg:right-[3%] lg:w-[47%] animate-float-slow bg-white border border-accent/15 rounded-2xl shadow-xl overflow-hidden hover:scale-[1.04] hover:border-accent/40 transition-all duration-500 cursor-pointer group"
+              className="absolute top-[48%] lg:top-[35%] right-[3%] w-[47%] animate-float-slow bg-white border border-accent/15 rounded-2xl shadow-xl overflow-hidden hover:scale-[1.04] hover:border-accent/40 transition-all duration-500 cursor-pointer group"
               style={{ animationDelay: "4.5s" }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -399,6 +375,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
 
       {/* ==================== 4. STAT BOARD (Experience Metrics) ==================== */}
       <section className="border-t border-b border-border bg-gradient-to-r from-slate-50 via-slate-100/40 to-slate-50">
@@ -422,6 +399,47 @@ export default function Home() {
             <div className="flex justify-between items-baseline">
               <span className="font-sans font-extrabold text-4xl md:text-5xl tracking-tight">500+</span>
               <span className="text-xs text-foreground/50 max-w-[120px] text-right md:text-left">Dự án thiết kế web bàn giao</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== VỀ CHÚNG TÔI (ABOUT US TEASER SECTION) ==================== */}
+      <section className="relative overflow-hidden max-w-7xl mx-auto px-6 py-20 w-full border-b border-border bg-gradient-to-b from-slate-50/20 via-slate-100/10 to-slate-50/20">
+        {/* Soft Background Glows */}
+        <div className="absolute top-[20%] left-[-5%] w-[280px] h-[280px] bg-accent/5 rounded-full blur-[80px] pointer-events-none -z-10"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1.5px,transparent_1.5px)] [background-size:32px_32px] opacity-30 pointer-events-none -z-20"></div>
+
+        <div className="flex flex-col lg:flex-row gap-12 items-center justify-between">
+          <div className="max-w-2xl text-left">
+            <span className="text-accent font-display text-xs tracking-[0.2em] font-black block mb-4">[ VỀ CHÚNG TÔI ]</span>
+            <h2 className="font-sans font-bold text-3xl md:text-5xl tracking-tight leading-tight text-slate-900 mb-6">
+              Hành trình phát triển của <span className="text-accent">CodeBy Đà Nẵng</span>
+            </h2>
+            <p className="text-slate-600 text-xs md:text-sm leading-relaxed mb-6 font-sans">
+              Được thành lập vào <strong>tháng 07 năm 2001</strong> với trụ sở chính tại <strong>710 Trần Cao Vân, Đà Nẵng</strong>, CODEBY tự hào là doanh nghiệp tiên phong thiết kế và thi công các công trình kỹ thuật phần mềm, website cao cấp cho nhiều thương hiệu lớn. Trải qua hơn 20 năm phát triển, chúng tôi cam kết đem lại các giải pháp công nghệ hiện đại giúp tối ưu hóa doanh thu và gia tăng vị thế số của doanh nghiệp.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/ve-chung-toi"
+                className="bg-accent hover:bg-[#0044cc] text-white font-sans font-bold text-xs tracking-wider py-3.5 px-7 rounded-full transition-all duration-300 flex items-center justify-center gap-2 group shadow-md"
+              >
+                XEM CÂU CHUYỆN CỦA CHÚNG TÔI
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
+              </Link>
+            </div>
+          </div>
+          
+          {/* A beautiful grid badge representing history */}
+          <div className="bg-white border border-border p-8 rounded-2xl flex flex-col justify-between shadow-sm min-w-[280px] w-full lg:w-auto shrink-0 relative overflow-hidden group hover:border-accent/30 transition-all duration-300">
+            <div className="absolute top-0 right-0 w-16 h-16 bg-accent/5 rounded-bl-full flex items-center justify-end pr-4 pb-4">
+              <Building2 className="w-5 h-5 text-accent" />
+            </div>
+            <span className="text-[10px] font-sans font-black tracking-widest text-slate-400 block mb-2">FOUNDED IN</span>
+            <span className="font-sans font-black text-slate-900 text-4xl mb-4">07/2001</span>
+            <div className="border-t border-slate-100 pt-4 text-left">
+              <h4 className="font-sans font-bold text-slate-900 text-xs uppercase tracking-wider mb-1">Trụ sở chính</h4>
+              <p className="text-slate-500 text-[11px] font-medium leading-relaxed font-sans">710 Trần Cao Vân, Thanh Khê, Đà Nẵng</p>
             </div>
           </div>
         </div>
@@ -1135,17 +1153,74 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ==================== PARTNER LOGO INFINITE SLIDER ==================== */}
+      <section className="border-b border-border bg-slate-50/60 py-10 overflow-hidden relative">
+        <div className="max-w-7xl mx-auto px-6 mb-6 text-center md:text-left flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <span className="text-accent font-sans text-xs tracking-wider font-bold block mb-2">
+              🤝 ĐỐI TÁC TIN CẬY
+            </span>
+            <h2 className="font-sans font-bold text-3xl md:text-5xl tracking-tight leading-tight text-slate-900">
+              Thương hiệu đã đồng hành & thiết kế Website tại CodeBy
+            </h2>
+          </div>
+
+        </div>
+
+        <div className="w-full relative overflow-hidden py-4 bg-white/40 border-y border-border/50">
+          {/* Subtle overlay gradients on the left and right edges for smooth fading effect */}
+          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none"></div>
+
+          <div className="flex w-max animate-marquee space-x-20 items-center">
+            {/* Copy 1 */}
+            {PARTNERS.map((partner, idx) => (
+              <div
+                key={`partner-1-${idx}`}
+                className="flex items-center space-x-3.5 transition-all duration-300 group cursor-pointer"
+              >
+                <div className={`p-2.5 rounded-xl border transition-all duration-300 ${partner.colorClass}`}>
+                  {partner.logo}
+                </div>
+                <span className="font-sans font-bold text-xs md:text-sm tracking-wider uppercase select-none text-slate-600 group-hover:text-slate-900 group-hover:scale-105 transition-all duration-300">
+                  {partner.name}
+                </span>
+              </div>
+            ))}
+            {/* Copy 2 for seamless repeat */}
+            {PARTNERS.map((partner, idx) => (
+              <div
+                key={`partner-2-${idx}`}
+                className="flex items-center space-x-3.5 transition-all duration-300 group cursor-pointer"
+              >
+                <div className={`p-2.5 rounded-xl border transition-all duration-300 ${partner.colorClass}`}>
+                  {partner.logo}
+                </div>
+                <span className="font-sans font-bold text-xs md:text-sm tracking-wider uppercase select-none text-slate-600 group-hover:text-slate-900 group-hover:scale-105 transition-all duration-300">
+                  {partner.name}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ==================== 6. PRICING SECTION (Sleek Swiss Brutalist Cards) ==================== */}
-      <section id="bao-gia" className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-slate-100/50 to-slate-50 border-t border-b border-border py-28">
-        <div className="max-w-7xl mx-auto px-6">
+      <section id="bao-gia" className="relative overflow-hidden bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950 text-white border-t border-b border-slate-900 py-28">
+        {/* Subtle grid and ambient light overlays for premium dark visual depth */}
+        <div className="absolute inset-0 bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:24px_24px] opacity-30 pointer-events-none -z-20"></div>
+        <div className="absolute top-[10%] right-[10%] w-[350px] h-[350px] bg-accent/[0.08] rounded-full blur-[120px] pointer-events-none -z-10 animate-pulse"></div>
+        <div className="absolute bottom-[10%] left-[5%] w-[400px] h-[400px] bg-teal-500/[0.05] rounded-full blur-[140px] pointer-events-none -z-10"></div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-6">
             <div>
               <span className="text-accent font-sans text-xs tracking-wider font-bold block mb-2">💰 BẢNG GIÁ CẠNH TRANH - RÕ RÀNG</span>
-              <h2 className="font-sans font-bold text-3xl md:text-5xl tracking-tight leading-tight text-slate-900">
+              <h2 className="font-sans font-bold text-3xl md:text-5xl tracking-tight leading-tight text-white">
                 Gói giá trọn gói
               </h2>
             </div>
-            <div className="flex items-center gap-3 text-sm text-accent">
+            <div className="flex items-center gap-3 text-sm text-accent bg-accent/5 border border-accent/20 px-4 py-2 rounded-full">
               <ShieldCheck className="w-5 h-5" />
               <span className="font-sans font-bold tracking-wider text-xs">CAM KẾT HOÀN TIỀN 100% NẾU KHÔNG ƯNG Ý</span>
             </div>
@@ -1157,8 +1232,8 @@ export default function Home() {
                 key={pkg.id}
                 className={`border p-8 flex flex-col justify-between relative rounded-2xl transition-all duration-300 ${
                   pkg.popular
-                    ? "bg-accent/5 border-accent border-2 shadow-lg shadow-accent/5"
-                    : "border-border hover:border-accent/40 bg-white"
+                    ? "bg-slate-900/80 border-accent border-2 shadow-2xl shadow-accent/10"
+                    : "border-slate-800 hover:border-accent/40 bg-slate-900/30 backdrop-blur-sm"
                 }`}
               >
                 {/* Popular banner tag */}
@@ -1171,18 +1246,18 @@ export default function Home() {
                 <div>
                   {/* Category Name */}
                   <span className={`font-sans font-bold text-xs tracking-wider uppercase block mb-4 ${
-                    pkg.popular ? "text-accent" : "text-foreground/40"
+                    pkg.popular ? "text-accent" : "text-slate-500"
                   }`}>
                     {pkg.badge}
                   </span>
                   
                   {/* Package title */}
-                  <h3 className="font-sans font-bold text-xl md:text-2xl tracking-tight mb-3 text-slate-900">
+                  <h3 className="font-sans font-bold text-xl md:text-2xl tracking-tight mb-3 text-white">
                     {pkg.name}
                   </h3>
                   
                   {/* Desc */}
-                  <p className="text-xs text-slate-600 leading-relaxed mb-6 font-sans">
+                  <p className="text-xs text-slate-400 leading-relaxed mb-6 font-sans">
                     {pkg.desc}
                   </p>
 
@@ -1191,15 +1266,15 @@ export default function Home() {
                     <span className="font-sans font-extrabold text-3xl md:text-4xl text-accent tracking-tight">
                       {pkg.price}
                     </span>
-                    <span className="text-xs text-slate-400 line-through font-mono">
+                    <span className="text-xs text-slate-500 line-through font-mono">
                       {pkg.oldPrice}
                     </span>
                   </div>
 
                   {/* Bullet points check list */}
-                  <div className="space-y-4 pt-6 border-t border-border/60">
+                  <div className="space-y-4 pt-6 border-t border-slate-800">
                     {pkg.features.map((feat, fIdx) => (
-                      <div key={fIdx} className="flex items-start gap-3 text-xs text-slate-700">
+                      <div key={fIdx} className="flex items-start gap-3 text-xs text-slate-300">
                         <CheckCircle2 className="w-4 h-4 text-accent shrink-0 mt-0.5" />
                         <span className="font-sans">{feat}</span>
                       </div>
@@ -1215,7 +1290,7 @@ export default function Home() {
                   className={`mt-10 w-full text-center py-4 font-sans font-bold text-xs tracking-wider transition-all duration-300 rounded-xl inline-block cursor-pointer ${
                     pkg.popular
                       ? "bg-accent hover:bg-[#0044cc] text-white"
-                      : "border border-foreground hover:border-accent hover:text-accent text-foreground hover:bg-accent/5"
+                      : "border border-slate-700 hover:border-accent hover:text-white text-slate-300 hover:bg-accent/10"
                   }`}
                 >
                   LIÊN HỆ NGAY
@@ -1227,19 +1302,22 @@ export default function Home() {
       </section>
 
       {/* ==================== 6. TESTIMONIALS SECTION (Autoplay Slider) ==================== */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-blue-50/10 to-slate-50 border-t border-b border-border py-28 px-6 w-full overflow-hidden">
-        <div className="max-w-4xl mx-auto flex flex-col items-center">
+      <section className="relative overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 border-b border-slate-900 py-28 px-6 w-full overflow-hidden text-white">
+        <div className="absolute inset-0 bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:32px_32px] opacity-25 pointer-events-none -z-20"></div>
+        <div className="absolute top-[20%] left-[5%] w-[300px] h-[300px] bg-accent/[0.06] rounded-full blur-[100px] pointer-events-none -z-10"></div>
+
+        <div className="max-w-4xl mx-auto flex flex-col items-center relative z-10">
           <div className="text-center mb-16">
             <span className="text-accent font-sans text-xs tracking-wider font-bold block mb-2">⭐ ĐÁNH GIÁ THỰC TẾ</span>
-            <h2 className="font-sans font-bold text-3xl md:text-5xl tracking-tight leading-tight text-slate-900">
+            <h2 className="font-sans font-bold text-3xl md:text-5xl tracking-tight leading-tight text-white">
               Khách hàng nói gì về chúng tôi
             </h2>
           </div>
 
           {/* Testimonial Slider Card */}
-          <div className="w-full relative bg-white border border-border p-8 md:p-12 rounded-2xl shadow-sm transition-all duration-500 min-h-[300px] flex flex-col justify-between">
+          <div className="w-full relative bg-slate-900/40 border border-slate-800/80 p-8 md:p-12 rounded-2xl shadow-2xl backdrop-blur-sm transition-all duration-500 min-h-[300px] flex flex-col justify-between">
             {/* Quote watermark background */}
-            <Quote className="absolute right-8 top-8 w-24 h-24 text-slate-100 -z-0 pointer-events-none" />
+            <Quote className="absolute right-8 top-8 w-24 h-24 text-slate-800/30 -z-0 pointer-events-none" />
 
             <div className="z-10">
               {/* Star Ratings */}
@@ -1250,22 +1328,22 @@ export default function Home() {
               </div>
 
               {/* Quote Content */}
-              <p className="text-slate-700 text-base md:text-xl md:leading-relaxed font-sans italic mb-8 font-medium">
-                "{TESTIMONIALS[currentTestimonial].quote}"
+              <p className="text-slate-200 text-base md:text-xl md:leading-relaxed font-sans italic mb-8 font-medium">
+                &ldquo;{TESTIMONIALS[currentTestimonial].quote}&rdquo;
               </p>
             </div>
 
             {/* Author info & Navigation arrows */}
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 z-10 pt-6 border-t border-border/60">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 z-10 pt-6 border-t border-slate-850">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-accent/10 border border-accent/20 rounded-full flex items-center justify-center font-sans font-bold text-accent text-sm">
                   {TESTIMONIALS[currentTestimonial].avatar}
                 </div>
                 <div>
-                  <h4 className="font-sans font-bold text-sm md:text-base text-slate-900">
+                  <h4 className="font-sans font-bold text-sm md:text-base text-white">
                     {TESTIMONIALS[currentTestimonial].name}
                   </h4>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-slate-400">
                     {TESTIMONIALS[currentTestimonial].role}
                   </p>
                 </div>
@@ -1279,7 +1357,7 @@ export default function Home() {
                       (prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length
                     )
                   }
-                  className="p-2.5 border border-border hover:border-accent text-slate-600 hover:text-accent rounded-xl hover:bg-accent/5 transition-all duration-300 cursor-pointer"
+                  className="p-2.5 border border-slate-800 hover:border-accent text-slate-400 hover:text-white rounded-xl hover:bg-accent/10 transition-all duration-300 cursor-pointer"
                   aria-label="Previous testimonial"
                 >
                   <ChevronLeft className="w-4 h-4" />
@@ -1292,7 +1370,7 @@ export default function Home() {
                       key={idx}
                       onClick={() => setCurrentTestimonial(idx)}
                       className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                        currentTestimonial === idx ? "bg-accent w-4" : "bg-slate-300"
+                        currentTestimonial === idx ? "bg-accent w-4" : "bg-slate-700"
                       }`}
                       aria-label={`Go to testimonial ${idx + 1}`}
                     />
@@ -1303,7 +1381,7 @@ export default function Home() {
                   onClick={() =>
                     setCurrentTestimonial((prev) => (prev + 1) % TESTIMONIALS.length)
                   }
-                  className="p-2.5 border border-border hover:border-accent text-slate-600 hover:text-accent rounded-xl hover:bg-accent/5 transition-all duration-300 cursor-pointer"
+                  className="p-2.5 border border-slate-800 hover:border-accent text-slate-400 hover:text-white rounded-xl hover:bg-accent/10 transition-all duration-300 cursor-pointer"
                   aria-label="Next testimonial"
                 >
                   <ChevronRight className="w-4 h-4" />
@@ -1315,77 +1393,59 @@ export default function Home() {
       </section>
 
       {/* ==================== 7. FAQS SECTION (Sleek Accordions) ==================== */}
-      <section id="faq" className="relative overflow-hidden max-w-4xl mx-auto px-6 py-28 w-full bg-gradient-to-b from-slate-50/35 via-slate-100/20 to-slate-50/35 rounded-3xl border border-border/80 p-6 md:p-16 shadow-sm my-16">
-        <div className="mb-20 text-center md:text-left">
-          <span className="text-accent font-sans text-xs tracking-wider font-bold block mb-2">💬 GIẢI ĐÁP THẮC MẮC</span>
-          <h2 className="font-sans font-bold text-3xl md:text-5xl tracking-tight leading-tight text-slate-900">
-            Hỏi đáp thường gặp
-          </h2>
-        </div>
+      <section id="faq" className="relative overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 border-t border-b border-slate-900 py-28 px-6 w-full overflow-hidden text-white">
+        <div className="absolute inset-0 bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:24px_24px] opacity-25 pointer-events-none -z-20"></div>
+        <div className="absolute bottom-[-10%] right-[5%] w-[350px] h-[350px] bg-accent/[0.05] rounded-full blur-[120px] pointer-events-none -z-10 animate-pulse"></div>
 
-        <div className="flex flex-col border-b border-border">
-          {FAQS.map((faq, idx) => {
-            const isOpen = activeFaq === idx;
-            return (
-              <div key={idx} className="border-t border-border py-6 transition-colors duration-300">
-                <button
-                  onClick={() => toggleFaq(idx)}
-                  className="w-full text-left flex justify-between items-center gap-6 font-sans font-bold text-base md:text-lg tracking-tight hover:text-accent transition-colors text-slate-900"
-                >
-                  <span>{faq.question}</span>
-                  <div className="p-1 border border-border/80 text-foreground shrink-0 rounded-lg">
-                    {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-                  </div>
-                </button>
+        <div className="max-w-4xl mx-auto relative z-10">
+          <div className="mb-16 text-center">
+            <span className="text-accent font-sans text-xs tracking-wider font-bold block mb-2">💬 GIẢI ĐÁP THẮC MẮC</span>
+            <h2 className="font-sans font-bold text-3xl md:text-5xl tracking-tight leading-tight text-white">
+              Hỏi đáp thường gặp
+            </h2>
+          </div>
+
+          <div className="space-y-4 max-w-3xl mx-auto">
+            {FAQS.map((faq, idx) => {
+              const isOpen = activeFaq === idx;
+              return (
                 <div
-                  className={`grid transition-all duration-300 ease-in-out overflow-hidden ${
-                    isOpen ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0"
+                  key={idx}
+                  className={`border rounded-2xl p-6 transition-all duration-300 ${
+                    isOpen
+                      ? "border-accent bg-slate-900/60 shadow-lg shadow-accent/5"
+                      : "border-slate-800 bg-slate-900/20 hover:border-slate-700/80 hover:bg-slate-900/45"
                   }`}
                 >
-                  <div className="overflow-hidden">
-                    <p className="text-xs md:text-sm text-slate-600 leading-relaxed font-sans max-w-3xl">
-                      {faq.answer}
-                    </p>
+                  <button
+                    onClick={() => toggleFaq(idx)}
+                    className="w-full text-left flex justify-between items-center gap-6 font-sans font-bold text-base md:text-lg tracking-tight hover:text-accent transition-colors text-white group"
+                  >
+                    <span className={isOpen ? "text-accent" : "text-white"}>{faq.question}</span>
+                    <div className={`p-1.5 border shrink-0 rounded-xl transition-all duration-300 ${
+                      isOpen ? "border-accent bg-accent text-white" : "border-slate-800 text-slate-400 group-hover:border-accent group-hover:text-accent"
+                    }`}>
+                      {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                    </div>
+                  </button>
+                  <div
+                    className={`grid transition-all duration-300 ease-in-out overflow-hidden ${
+                      isOpen ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0"
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <p className="text-xs md:text-sm text-slate-300 leading-relaxed font-sans max-w-3xl pt-4 border-t border-slate-800/50 mt-4">
+                        {faq.answer}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </section>
 
-      {/* ==================== 8. FOOTER ==================== */}
-      <footer className="border-t border-border py-16 px-6 bg-slate-950 text-white">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
-          <div className="flex flex-col space-y-6 max-w-sm">
-            <span className="font-sans font-extrabold text-xl tracking-wider">
-              CODEBY<span className="text-accent">/</span>ĐÀNẴNG
-            </span>
-            <p className="text-xs text-slate-400 leading-relaxed font-sans">
-              Chúng tôi là đơn vị chuyên nghiệp chuyên thiết kế website, ứng dụng di động, đồ họa thương hiệu và triển khai giải pháp Digital Marketing tối ưu cho doanh nghiệp tại Đà Nẵng, Quảng Nam, Quảng Ngãi và cả nước.
-            </p>
-            <span className="text-[10px] text-slate-500 font-mono">
-              © {new Date().getFullYear()} THIẾT KẾ WEBSITE CODEBY. ALL RIGHTS RESERVED.
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 font-sans font-semibold text-xs tracking-wider w-full md:w-auto">
-            <div className="flex flex-col space-y-3">
-              <span className="text-accent text-[10px] tracking-wider font-bold uppercase mb-1">LIÊN KẾT NHANH</span>
-              <a href="#dich-vu" className="hover:text-accent transition-colors text-slate-300">Dịch Vụ</a>
-              <a href="#bao-gia" className="hover:text-accent transition-colors text-slate-300">Bảng Giá</a>
-              <Link href="/portfolio" className="hover:text-accent transition-colors text-slate-300">Kho Giao Diện Mẫu</Link>
-              <Link href="/estimator" className="hover:text-accent transition-colors text-slate-300">Bộ Tính Giá</Link>
-            </div>
-            <div className="flex flex-col space-y-3 font-sans">
-              <span className="text-accent text-[10px] tracking-wider font-bold uppercase mb-1">THÔNG TIN LIÊN HỆ</span>
-              <span className="text-slate-300 hover:text-white font-sans lowercase">contact@thietkewebsitecodeby.com</span>
-              <span className="text-slate-300 hover:text-white font-sans">0378 486 992</span>
-              <span className="text-slate-300 hover:text-white font-sans">183 Quách Thị Trang, Hoà Xuân, Cẩm Lệ, TP Đà Nẵng</span>
-            </div>
-          </div>
-        </div>
-      </footer>
 
       {/* ==================== Sticky CTA Omnichannel Widgets (Desktop: Floating Bubbles, Mobile: Sticky Bottom Bar) ==================== */}
       {/* Desktop View: Floating bottom-right bubbles with hover slide-out tooltips */}

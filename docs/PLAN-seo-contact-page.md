@@ -6,7 +6,7 @@ Kế hoạch này phác thảo các bước triển khai kỹ thuật để tạ
 
 ## 🛑 Câu hỏi chiến lược (Socratic Gate) - Vui lòng phản hồi ở mục chat:
 1. **Dữ liệu Biểu mẫu (Form Submission):** Bạn muốn dữ liệu biểu mẫu liên hệ này được xử lý như thế nào? (Lưu nội bộ tạm thời hiển thị popup thành công, hay gửi email/Google Sheets?)
-2. **Google Maps Embed:** Có nên nhúng trực tiếp bản đồ chỉ đường đến văn phòng CodeBy (183 Quách Thị Trang, Đà Nẵng) trên trang này để tăng uy tín không?
+2. **Google Maps Embed:** Có nên nhúng trực tiếp bản đồ chỉ đường đến văn phòng CodeBy (710 Trần Cao Vân, Đà Nẵng) trên trang này để tăng uy tín không?
 3. **Tối ưu SEO nâng cao:** Bạn có muốn tích hợp thêm đoạn giới thiệu ngắn về dịch vụ thiết kế web Đà Nẵng uy tín ngay bên dưới form liên hệ để bot Google quét từ khóa tốt hơn không?
 
 ---

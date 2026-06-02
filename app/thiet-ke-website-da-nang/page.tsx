@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { 
-  ArrowLeft, 
   Send, 
   CheckSquare, 
   AlertCircle, 
@@ -12,7 +11,7 @@ import {
   Mail, 
   MapPin, 
   Clock, 
-  CheckCircle,
+
   Zap,
   Shield,
   Search,
@@ -22,11 +21,29 @@ import {
 // Contact form component with URL parameters pre-population
 function ContactFormContent() {
   const searchParams = useSearchParams();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
+  const [formData, setFormData] = useState(() => {
+    const webType = searchParams ? searchParams.get("type") : null;
+    const pages = searchParams ? searchParams.get("pages") : null;
+    const features = searchParams ? searchParams.get("features") : null;
+    const min = searchParams ? searchParams.get("min") : null;
+    const max = searchParams ? searchParams.get("max") : null;
+
+    let initialMessage = "";
+    if (webType || pages || features) {
+      initialMessage = `Chào CodeBy Đà Nẵng,\n\nTôi muốn nhận tư vấn thiết kế website với cấu hình đã tính toán từ công cụ của bạn:\n`;
+      if (webType) initialMessage += `- Loại hình: ${webType}\n`;
+      if (pages) initialMessage += `- Quy mô: ${pages}\n`;
+      if (features) initialMessage += `- Các tính năng thêm: ${features}\n`;
+      if (min && max) initialMessage += `- Dự kiến ngân sách đầu tư: ${min} — ${max}\n`;
+      initialMessage += `\nRất mong nhận được phản hồi và tư vấn chi tiết từ phía các bạn. Xin cảm ơn!`;
+    }
+
+    return {
+      name: "",
+      email: "",
+      phone: "",
+      message: initialMessage,
+    };
   });
 
   const [formErrors, setFormErrors] = useState({
@@ -37,26 +54,6 @@ function ContactFormContent() {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // Parse URL query parameters from the Price Estimator
-  useEffect(() => {
-    const webType = searchParams.get("type");
-    const pages = searchParams.get("pages");
-    const features = searchParams.get("features");
-    const min = searchParams.get("min");
-    const max = searchParams.get("max");
-
-    if (webType || pages || features) {
-      let populatedMessage = `Chào CodeBy Đà Nẵng,\n\nTôi muốn nhận tư vấn thiết kế website với cấu hình đã tính toán từ công cụ của bạn:\n`;
-      if (webType) populatedMessage += `- Loại hình: ${webType}\n`;
-      if (pages) populatedMessage += `- Quy mô: ${pages}\n`;
-      if (features) populatedMessage += `- Các tính năng thêm: ${features}\n`;
-      if (min && max) populatedMessage += `- Dự kiến ngân sách đầu tư: ${min} — ${max}\n`;
-      populatedMessage += `\nRất mong nhận được phản hồi và tư vấn chi tiết từ phía các bạn. Xin cảm ơn!`;
-
-      setFormData((prev) => ({ ...prev, message: populatedMessage }));
-    }
-  }, [searchParams]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -281,7 +278,7 @@ function ContactFormContent() {
                 <div>
                   <span className="text-white/40 block text-[10px] font-mono mb-0.5">[ STUDIO ĐỊA CHỈ ]</span>
                   <p className="text-white/80 leading-relaxed font-sans text-sm">
-                    183 Quách Thị Trang, Hoà Xuân, Cẩm Lệ, TP Đà Nẵng.
+                    710 Trần Cao Vân, Thanh Khê, Đà Nẵng.
                   </p>
                 </div>
               </div>
@@ -310,7 +307,7 @@ function ContactFormContent() {
           </div>
           <div className="w-full h-[220px] rounded-2xl overflow-hidden border border-slate-200">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3835.6565158652395!2d108.21731631526466!3d15.97931398893544!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31421a14ebaf252b%3A0xe54e6eefbe0ee4ff!2zMTgzIFF1w6FjaCBUaOG7iyBUcmFuZywgSG_DoCBYdcOibiwgQ-G6qW0gTOG7hywgxJDDoCBO4bq5bmcsIFZpZXRuYW0!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s"
+              src="https://maps.google.com/maps?q=710%20Tr%E1%BA%A7n%20Cao%20V%C3%A2n,%20Thanh%20Kh%C3%AA,%20%C4%90%C3%A0%20N%E1%BA%B5ng&t=&z=16&ie=UTF8&iwloc=&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -327,28 +324,12 @@ function ContactFormContent() {
 
 export default function ThietKeWebsiteDaNang() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-blue-50/10 to-slate-50 text-foreground flex flex-col font-sans selection:bg-accent selection:text-white relative overflow-x-hidden">
+    <div className="bg-gradient-to-b from-slate-50 via-blue-50/10 to-slate-50 text-foreground flex flex-col font-sans selection:bg-accent selection:text-white relative overflow-x-hidden w-full flex-1">
       
       {/* Background visual layers for premium tech identity */}
       <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1.2px,transparent_1.2px)] [background-size:32px_32px] opacity-[0.3] pointer-events-none -z-30"></div>
       <div className="absolute top-[10%] left-[-5%] w-[450px] h-[450px] bg-accent/[0.04] rounded-full blur-[130px] pointer-events-none -z-20"></div>
       <div className="absolute top-[40%] right-[-5%] w-[500px] h-[500px] bg-teal-500/[0.03] rounded-full blur-[150px] pointer-events-none -z-20"></div>
-
-      {/* Navigation Header */}
-      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/80">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <Link href="/" className="flex flex-col justify-center font-sans font-black text-[10px] sm:text-xs leading-none tracking-[0.2em] hover:text-accent transition-colors">
-            <span className="text-slate-900">THIETKEWEBSITE</span>
-            <span className="text-accent mt-1">CODEBYDANANG</span>
-          </Link>
-          <Link
-            href="/"
-            className="flex items-center gap-2 text-xs font-sans font-bold tracking-wider hover:text-accent transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" /> QUAY LẠI TRANG CHỦ
-          </Link>
-        </div>
-      </header>
 
       {/* Main Content Area */}
       <main className="max-w-7xl mx-auto px-6 py-20 w-full flex-1 flex flex-col">
@@ -441,16 +422,7 @@ export default function ThietKeWebsiteDaNang() {
           </div>
         </section>
       </main>
-
-      {/* Footer */}
-      <footer className="border-t border-slate-800 py-12 px-6 bg-slate-950 text-white">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-400">
-          <Link href="/" className="font-sans font-black text-lg tracking-[0.2em] text-white hover:text-accent">
-            CODEBY<span className="text-accent">/</span>ĐÀNẴNG
-          </Link>
-          <span className="font-sans text-xs">© {new Date().getFullYear()} THIẾT KẾ WEBSITE CODEBY. BẢO HÀNH TRỌN ĐỜI.</span>
-        </div>
-      </footer>
     </div>
   );
 }
+

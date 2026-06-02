@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 const roboto = Roboto({
   weight: ["300", "400", "500", "700", "900"],
@@ -12,6 +14,11 @@ export const metadata: Metadata = {
   title: "CodeBy Đà Nẵng | Thiết Kế Website Trọn Gói & Chuẩn SEO",
   description: "Dịch vụ thiết kế website chuyên nghiệp, uy tín, tối ưu tỷ lệ chuyển đổi và chuẩn SEO tại Đà Nẵng bởi CodeBy. Tải trang siêu tốc, bảo hành trọn đời.",
   metadataBase: new URL("https://thietkewebsitecodeby.com"),
+  icons: {
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
+  },
   openGraph: {
     title: "CodeBy Đà Nẵng | Thiết Kế Website Trọn Gói & Chuẩn SEO",
     description: "Kiến tạo website đẳng cấp bởi CodeBy Đà Nẵng, độc bản và hiệu năng vượt trội.",
@@ -31,7 +38,9 @@ export default function RootLayout({
       className={`${roboto.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-background text-foreground flex flex-col selection:bg-accent selection:text-black">
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

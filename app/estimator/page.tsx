@@ -1,8 +1,11 @@
+
+
+
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, ShieldCheck, Zap, Layers, RefreshCw } from "lucide-react";
+import { ArrowRight, ShieldCheck, Zap, Layers, RefreshCw } from "lucide-react";
 
 // Pricing data structures in VND (Vietnamese Dong)
 const WEB_TYPES = [
@@ -30,29 +33,26 @@ export default function Estimator() {
   const [selectedType, setSelectedType] = useState("landing");
   const [selectedPages, setSelectedPages] = useState("small");
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
-  const [priceMin, setPriceMin] = useState(0);
-  const [priceMax, setPriceMax] = useState(0);
 
-  useEffect(() => {
-    const webType = WEB_TYPES.find((w) => w.id === selectedType);
-    const pages = PAGES_COUNTS.find((p) => p.id === selectedPages);
+  // Calculate pricing range directly on the fly during rendering (Derived State)
+  const webTypeObj = WEB_TYPES.find((w) => w.id === selectedType);
+  const pagesObj = PAGES_COUNTS.find((p) => p.id === selectedPages);
 
-    if (!webType || !pages) return;
+  let priceMin = 0;
+  let priceMax = 0;
 
-    let min = webType.baseMin + pages.minPrice;
-    let max = webType.baseMax + pages.maxPrice;
+  if (webTypeObj && pagesObj) {
+    priceMin = webTypeObj.baseMin + pagesObj.minPrice;
+    priceMax = webTypeObj.baseMax + pagesObj.maxPrice;
 
     selectedFeatures.forEach((fId) => {
       const feat = FEATURES.find((f) => f.id === fId);
       if (feat) {
-        min += feat.price;
-        max += feat.price;
+        priceMin += feat.price;
+        priceMax += feat.price;
       }
     });
-
-    setPriceMin(min);
-    setPriceMax(max);
-  }, [selectedType, selectedPages, selectedFeatures]);
+  }
 
   const toggleFeature = (featId: string) => {
     if (selectedFeatures.includes(featId)) {
@@ -85,23 +85,7 @@ export default function Estimator() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col font-sans selection:bg-accent selection:text-white selection:font-bold">
-      {/* Navigation Header */}
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <Link href="/" className="flex flex-col justify-center font-sans font-black text-[10px] sm:text-xs leading-none tracking-[0.15em] sm:tracking-[0.2em] hover:text-accent transition-colors">
-            <span className="text-slate-900">THIETKEWEBSITE</span>
-            <span className="text-accent mt-1">CODEBYDANANG</span>
-          </Link>
-          <Link
-            href="/"
-            className="flex items-center gap-3 text-xs font-display font-black tracking-widest hover:text-accent transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" /> TRANG CHỦ
-          </Link>
-        </div>
-      </header>
-
+    <>
       {/* Main Container */}
       <main className="max-w-7xl mx-auto px-6 py-20 w-full flex-1 flex flex-col lg:flex-row gap-16 relative">
 
@@ -315,16 +299,6 @@ export default function Estimator() {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="border-t border-border py-12 px-6 bg-slate-950 text-white">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-400">
-          <Link href="/" className="font-display font-black text-lg tracking-[0.2em] text-white hover:text-accent">
-            CODEBY<span className="text-accent">/</span>ĐÀNẴNG
-          </Link>
-          <span className="font-mono text-xs">© {new Date().getFullYear()} THIẾT KẾ WEBSITE CODEBY. ALL RIGHTS RESERVED.</span>
-        </div>
-      </footer>
-    </div>
+    </>
   );
 }
