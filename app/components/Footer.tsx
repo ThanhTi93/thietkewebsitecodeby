@@ -29,7 +29,7 @@ export default function Footer() {
           </div>
           <div className="flex flex-col space-y-3 font-sans">
             <span className="text-accent text-[10px] tracking-wider font-bold uppercase mb-1">THÔNG TIN LIÊN HỆ</span>
-            <span className="text-slate-300 hover:text-white font-sans lowercase">contact@thietkewebsitecodeby.com</span>
+            <span className="text-slate-300 hover:text-white font-sans lowercase">tranthanhtiqn@gmail.com </span>
             <span className="text-slate-300 hover:text-white font-sans">0378 486 992</span>
             <span className="text-slate-300 hover:text-white font-sans">710 Trần Cao Vân, Thanh Khê, Đà Nẵng</span>
           </div>
