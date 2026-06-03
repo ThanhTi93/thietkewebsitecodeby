@@ -3,8 +3,9 @@
 
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { ArrowRight, ShieldCheck, Zap, Layers, RefreshCw } from "lucide-react";
 
 // Pricing data structures in VND (Vietnamese Dong)
@@ -29,8 +30,12 @@ const FEATURES = [
   { id: "seo", name: "Tối ưu SEO Nâng cao & Core Web Vitals", price: 3000000, desc: "Đạt điểm tối đa Lighthouse, dễ dàng lên top Google." },
 ];
 
-export default function Estimator() {
-  const [selectedType, setSelectedType] = useState("landing");
+function EstimatorContent() {
+  const searchParams = useSearchParams();
+  const typeParam = searchParams.get("type");
+  const initialType = (typeParam && ["landing", "corporate", "ecommerce", "saas"].includes(typeParam)) ? typeParam : "landing";
+
+  const [selectedType, setSelectedType] = useState(initialType);
   const [selectedPages, setSelectedPages] = useState("small");
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
 
@@ -300,5 +305,17 @@ export default function Estimator() {
         </div>
       </section>
     </>
+  );
+}
+
+export default function Estimator() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-slate-50 font-sans text-accent font-bold animate-pulse">
+        Đang tải bộ tính giá...
+      </div>
+    }>
+      <EstimatorContent />
+    </Suspense>
   );
 }

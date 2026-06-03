@@ -44,12 +44,14 @@ export default function Header() {
 
         {/* Call to action button */}
         <div className="hidden md:block">
-          <Link
-            href="/estimator"
+          <a
+            href="https://zalo.me/0378486992"
+            target="_blank"
+            rel="noopener noreferrer"
             className="border-2 border-foreground hover:border-accent hover:bg-accent hover:text-white text-xs font-sans font-bold py-3 px-6 transition-all duration-300 rounded-full inline-block"
           >
             ĐĂNG KÝ TƯ VẤN
-          </Link>
+          </a>
         </div>
 
         {/* Mobile Menu Icon */}
@@ -77,9 +79,15 @@ export default function Header() {
           <Link href="/lien-he" onClick={() => setMobileMenuOpen(false)} className="hover:text-accent transition-colors border-b border-border/50 pb-3">
             LIÊN HỆ
           </Link>
-          <Link href="/estimator" onClick={() => setMobileMenuOpen(false)} className="bg-accent text-white text-center py-4 rounded-xl font-bold">
+          <a
+            href="https://zalo.me/0378486992"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setMobileMenuOpen(false)}
+            className="bg-accent text-white text-center py-4 rounded-xl font-bold block"
+          >
             ĐĂNG KÝ TƯ VẤN
-          </Link>
+          </a>
         </div>
       )}
     </header>

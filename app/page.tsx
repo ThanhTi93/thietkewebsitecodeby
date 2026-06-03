@@ -12,7 +12,6 @@ import {
   ArrowRight,
   Plus,
   Minus,
-  MessageCircle,
   Phone,
   ShieldCheck,
   CheckCircle2,
@@ -237,39 +236,7 @@ export default function Home() {
       <div className="absolute top-[68%] right-[10%] w-[500px] h-[500px] bg-teal-500/[0.04] rounded-full blur-[150px] pointer-events-none -z-20"></div>
       <div className="absolute bottom-[8%] left-[15%] w-[600px] h-[600px] bg-accent/[0.06] rounded-full blur-[180px] pointer-events-none -z-20"></div>
 
-      {/* ==================== 1. FLOATING QUICK CONTACT PANEL (Sleek Round Icons) ==================== */}
-      <div className="fixed bottom-6 right-6 z-50 flex flex-col space-y-3">
-        {/* Facebook Messenger */}
-        <a
-          href="https://m.me/101479495945726"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-14 h-14 bg-white border border-border text-foreground hover:bg-accent hover:text-white hover:border-accent transition-all duration-300 flex items-center justify-center rounded-full shadow-2xl group"
-          title="Chat Facebook"
-        >
-          <MessageCircle className="w-6 h-6 group-hover:scale-110 transition-transform" />
-        </a>
 
-        {/* Zalo Chat */}
-        <a
-          href="https://zalo.me/0378486992"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-14 h-14 bg-white border border-border text-foreground hover:bg-[#0068ff] hover:text-white hover:border-[#0068ff] transition-all duration-300 flex items-center justify-center rounded-full shadow-2xl group font-sans font-bold text-xs"
-          title="Chat Zalo"
-        >
-          ZALO
-        </a>
-
-        {/* Hotline Call */}
-        <a
-          href="tel:0378486992"
-          className="w-14 h-14 bg-accent text-white hover:bg-white hover:text-accent border border-accent hover:border-accent transition-all duration-300 flex items-center justify-center rounded-full shadow-2xl group"
-          title="Gọi Hotline"
-        >
-          <Phone className="w-6 h-6 group-hover:scale-110 transition-transform" />
-        </a>
-      </div>
 
 
       {/* ==================== 3. HERO SECTION ==================== */}
@@ -1293,7 +1260,7 @@ export default function Home() {
                       : "border border-slate-700 hover:border-accent hover:text-white text-slate-300 hover:bg-accent/10"
                   }`}
                 >
-                  LIÊN HỆ NGAY
+                  ĐĂNG KÝ TƯ VẤN
                 </a>
               </div>
             ))}
