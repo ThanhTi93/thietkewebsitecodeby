@@ -24,7 +24,7 @@ export default function Footer() {
             <span className="text-accent text-[10px] tracking-wider font-bold uppercase mb-1">LIÊN KẾT NHANH</span>
             <Link href="/#dich-vu" className="hover:text-accent transition-colors text-slate-300">Dịch Vụ</Link>
             <Link href="/#bao-gia" className="hover:text-accent transition-colors text-slate-300">Bảng Giá</Link>
-            <Link href="/portfolio" className="hover:text-accent transition-colors text-slate-300">Kho Giao Diện Mẫu</Link>
+            <Link href="/kho-giao-dien" className="hover:text-accent transition-colors text-slate-300">Kho Giao Diện Mẫu</Link>
             <Link href="/estimator" className="hover:text-accent transition-colors text-slate-300">Bộ Tính Giá</Link>
           </div>
           <div className="flex flex-col space-y-3 font-sans">

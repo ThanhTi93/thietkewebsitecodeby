@@ -91,6 +91,59 @@ const PARTNERS = [
   }
 ];
 
+interface SectorItem {
+  title: string;
+  desc: string;
+  image: string;
+  category: string;
+  tags: string[];
+}
+
+const SECTORS: SectorItem[] = [
+  {
+    title: "Bán Hàng & E-Commerce",
+    desc: "Tích hợp thanh toán online tự động (Momo, ZaloPay, ngân hàng), quản lý kho hàng chuẩn xác, giao diện tối ưu giỏ hàng nâng cao tỷ lệ chốt đơn của khách hàng.",
+    image: "https://cdn3290.cdn4s6.io.vn/media/mypham02.webp",
+    category: "ecommerce-basic",
+    tags: ["Bán hàng", "Giỏ hàng", "Thanh toán QR"]
+  },
+  {
+    title: "Bất Động Sản Cao Cấp",
+    desc: "Trình chiếu hình ảnh/video 4K sắc nét của dự án, sơ đồ mặt bằng chi tiết, bộ lọc tìm kiếm tin đăng thông minh theo địa điểm, mức giá và diện tích.",
+    image: "https://cdn3290.cdn4s6.io.vn/media/batdongsan04.webp",
+    category: "real-estate",
+    tags: ["Dự án", "Lọc thông minh", "Bản đồ"]
+  },
+  {
+    title: "Khách Sạn & Du Lịch & Spa",
+    desc: "Hệ thống đặt phòng, đặt lịch dịch vụ trực tiếp nhanh chóng, đồng bộ email xác nhận tự động, hiển thị trải nghiệm khách hàng và đánh giá chân thực.",
+    image: "https://cdn3290.cdn4s6.io.vn/media/mypham07.webp",
+    category: "booking",
+    tags: ["Đặt lịch", "Đồng bộ email", "Đánh giá"]
+  },
+  {
+    title: "Giáo Dục & Đào Tạo",
+    desc: "Trưng bày danh sách khóa học khoa học, lịch khai giảng trực quan, tích hợp form tư vấn tuyển sinh và quản lý thông tin học viên tự động.",
+    image: "https://cdn3290.cdn4s6.io.vn/media/landing09.webp",
+    category: "landing-page",
+    tags: ["Khóa học", "Form đăng ký", "Tư vấn"]
+  },
+  {
+    title: "Doanh Nghiệp & Giới Thiệu",
+    desc: "Xây dựng thương hiệu uy tín vượt trội, giới thiệu năng lực cốt lõi, dịch vụ/sản phẩm chi tiết và tích hợp form thu hút đối tác B2B.",
+    image: "https://cdn3290.cdn4s6.io.vn/media/doanhnghiep06.webp",
+    category: "corporate",
+    tags: ["Thương hiệu", "Hồ sơ năng lực", "Tin tức"]
+  },
+  {
+    title: "Nhà Hàng & Quán Cafe (F&B)",
+    desc: "Hiển thị menu thức ăn sinh động, biểu giá chân thực, tính năng đặt bàn trước giữ chỗ và kết nối bản đồ chỉ đường Google Maps trực quan.",
+    image: "https://cdn3290.cdn4s6.io.vn/media/landing04.webp",
+    category: "booking",
+    tags: ["Đặt bàn", "Thực đơn", "Chỉ đường"]
+  }
+];
+
 export default function Home() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [activeService, setActiveService] = useState(0);
@@ -268,7 +321,7 @@ export default function Home() {
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
               </a>
               <Link
-                href="/portfolio"
+                href="/kho-giao-dien"
                 className="border border-slate-300 hover:border-accent hover:text-accent font-sans font-bold text-xs tracking-wider py-4 px-8 rounded-full transition-all duration-300 text-center text-slate-700 hover:bg-slate-50"
               >
                 KHO GIAO DIỆN MẪU
@@ -494,215 +547,62 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Sector 1: E-commerce */}
-          <div className="overflow-hidden border border-border bg-white rounded-2xl shadow-sm hover:shadow-xl hover:border-accent/40 transition-all duration-300 group hover:-translate-y-1.5 flex flex-col justify-between min-h-[460px]">
-            <div className="relative w-full aspect-[16/10] overflow-hidden bg-slate-100">
-              <img
-                src="/sector_ecommerce.png"
-                alt="Thiết Kế Web Bán Hàng & E-Commerce - CodeBy Đà Nẵng"
-                loading="lazy"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/10 to-transparent pointer-events-none"></div>
-            </div>
-            <div className="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <div className="flex justify-between items-start mb-5">
-                  <div className="w-10 h-10 bg-accent/5 text-accent rounded-xl flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-colors duration-300">
-                    <ShoppingBag className="w-5 h-5" />
-                  </div>
-                  <span className="text-[10px] font-sans font-bold px-2.5 py-1 bg-emerald-500/10 text-emerald-600 rounded-full">
-                    Tăng Chuyển Đổi
-                  </span>
-                </div>
-                <h3 className="font-sans font-bold text-lg md:text-xl text-slate-900 mb-3 group-hover:text-accent transition-colors">
-                  Thiết Kế Web Bán Hàng & E-Commerce
-                </h3>
-                <p className="text-slate-600 text-xs md:text-sm leading-relaxed">
-                  Tích hợp thanh toán online tự động (Momo, ZaloPay, ngân hàng), quản lý kho hàng chuẩn xác, giao diện tối ưu giỏ hàng nâng cao tỷ lệ chốt đơn của khách hàng.
-                </p>
-              </div>
-              <div className="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between text-xs text-accent font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span>[ Khuyên dùng website ]</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </div>
-            </div>
-          </div>
+          {SECTORS.map((sector, idx) => {
+            const isStaggered = idx % 3 === 1;
 
-          {/* Sector 2: Real Estate */}
-          <div className="overflow-hidden border border-border bg-white rounded-2xl shadow-sm hover:shadow-xl hover:border-accent/40 transition-all duration-300 group hover:-translate-y-1.5 flex flex-col justify-between min-h-[460px]">
-            <div className="relative w-full aspect-[16/10] overflow-hidden bg-slate-100">
-              <img
-                src="/sector_realestate.png"
-                alt="Website Bất Động Sản Cao Cấp - CodeBy Đà Nẵng"
-                loading="lazy"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/10 to-transparent pointer-events-none"></div>
-            </div>
-            <div className="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <div className="flex justify-between items-start mb-5">
-                  <div className="w-10 h-10 bg-accent/5 text-accent rounded-xl flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-colors duration-300">
-                    <Building2 className="w-5 h-5" />
-                  </div>
-                  <span className="text-[10px] font-sans font-bold px-2.5 py-1 bg-accent/10 text-accent rounded-full">
-                    Bộ Lọc Thông Minh
-                  </span>
+            return (
+              <div
+                key={idx}
+                className={`group flex flex-col border border-border bg-white rounded-2xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-all duration-500 ease-out ${
+                  isStaggered ? "lg:-translate-y-4" : ""
+                }`}
+              >
+                {/* Image Container with organic zoom and hover overlay */}
+                <div className="relative w-full aspect-[4/3] overflow-hidden bg-slate-100 shrink-0">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={sector.image}
+                    alt={`${sector.title} - CodeBy Đà Nẵng`}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700 ease-out"
+                    loading="lazy"
+                  />
+                  {/* Overlay gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  {/* Accent Bottom Overlay bar on hover */}
+                  <div className="absolute bottom-0 left-0 w-full h-[4px] bg-accent transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"></div>
                 </div>
-                <h3 className="font-sans font-bold text-lg md:text-xl text-slate-900 mb-3 group-hover:text-accent transition-colors">
-                  Website Bất Động Sản Cao Cấp
-                </h3>
-                <p className="text-slate-600 text-xs md:text-sm leading-relaxed">
-                  Trình chiếu hình ảnh/video 4K sắc nét của dự án, sơ đồ mặt bằng chi tiết, bộ lọc tìm kiếm tin đăng thông minh theo địa điểm, mức giá và diện tích.
-                </p>
-              </div>
-              <div className="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between text-xs text-accent font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span>[ Khuyên dùng website ]</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </div>
-            </div>
-          </div>
 
-          {/* Sector 3: Tourism/Hotels */}
-          <div className="overflow-hidden border border-border bg-white rounded-2xl shadow-sm hover:shadow-xl hover:border-accent/40 transition-all duration-300 group hover:-translate-y-1.5 flex flex-col justify-between min-h-[460px]">
-            <div className="relative w-full aspect-[16/10] overflow-hidden bg-slate-100">
-              <img
-                src="/sector_tourism.png"
-                alt="Website Khách Sạn & Du Lịch & Spa - CodeBy Đà Nẵng"
-                loading="lazy"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/10 to-transparent pointer-events-none"></div>
-            </div>
-            <div className="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <div className="flex justify-between items-start mb-5">
-                  <div className="w-10 h-10 bg-accent/5 text-accent rounded-xl flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-colors duration-300">
-                    <Palmtree className="w-5 h-5" />
+                {/* Title & Description Meta Card */}
+                <div className="p-6 flex-1 flex flex-col justify-between bg-white group-hover:bg-slate-50/50 transition-colors duration-300">
+                  <div className="flex flex-col gap-2.5 mb-6">
+                    <h3 className="font-sans font-extrabold text-lg uppercase tracking-tight text-foreground line-clamp-1 group-hover:text-accent transition-colors duration-300">
+                      {sector.title}
+                    </h3>
+                    <p className="text-slate-500 text-xs md:text-sm leading-relaxed line-clamp-3">
+                      {sector.desc}
+                    </p>
                   </div>
-                  <span className="text-[10px] font-sans font-bold px-2.5 py-1 bg-emerald-500/10 text-emerald-600 rounded-full">
-                    Đặt Phòng Trực Tuyến
-                  </span>
-                </div>
-                <h3 className="font-sans font-bold text-lg md:text-xl text-slate-900 mb-3 group-hover:text-accent transition-colors">
-                  Website Khách Sạn & Du Lịch & Spa
-                </h3>
-                <p className="text-slate-600 text-xs md:text-sm leading-relaxed">
-                  Hệ thống đặt phòng, đặt lịch dịch vụ trực tiếp nhanh chóng, đồng bộ email xác nhận tự động, hiển thị trải nghiệm khách hàng và đánh giá chân thực.
-                </p>
-              </div>
-              <div className="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between text-xs text-accent font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span>[ Khuyên dùng website ]</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </div>
-            </div>
-          </div>
 
-          {/* Sector 4: Education */}
-          <div className="overflow-hidden border border-border bg-white rounded-2xl shadow-sm hover:shadow-xl hover:border-accent/40 transition-all duration-300 group hover:-translate-y-1.5 flex flex-col justify-between min-h-[460px]">
-            <div className="relative w-full aspect-[16/10] overflow-hidden bg-slate-100">
-              <img
-                src="/sector_education.png"
-                alt="Website Giáo Dục & Trung Tâm Đào Tạo - CodeBy Đà Nẵng"
-                loading="lazy"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/10 to-transparent pointer-events-none"></div>
-            </div>
-            <div className="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <div className="flex justify-between items-start mb-5">
-                  <div className="w-10 h-10 bg-accent/5 text-accent rounded-xl flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-colors duration-300">
-                    <GraduationCap className="w-5 h-5" />
+                  <div className="flex justify-between items-center pt-4 border-t border-slate-100">
+                    <div className="flex flex-wrap gap-1">
+                      {sector.tags.map((tag, tIdx) => (
+                        <span key={tIdx} className="text-[10px] text-slate-400 font-bold bg-slate-100 px-2 py-0.5 rounded">
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                    <Link
+                      href={`/kho-giao-dien?category=${sector.category}`}
+                      className="flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-slate-700 group-hover:text-white group-hover:bg-accent border border-slate-200 group-hover:border-accent rounded-xl transition-all duration-300 shrink-0"
+                    >
+                      <span>XEM MẪU</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </Link>
                   </div>
-                  <span className="text-[10px] font-sans font-bold px-2.5 py-1 bg-accent/10 text-accent rounded-full">
-                    Đăng Ký Khóa Học
-                  </span>
                 </div>
-                <h3 className="font-sans font-bold text-lg md:text-xl text-slate-900 mb-3 group-hover:text-accent transition-colors">
-                  Website Giáo Dục & Trung Tâm Đào Tạo
-                </h3>
-                <p className="text-slate-600 text-xs md:text-sm leading-relaxed">
-                  Trưng bày danh sách khóa học khoa học, lịch khai giảng trực quan, tích hợp form tư vấn tuyển sinh và quản lý thông tin học viên tự động.
-                </p>
               </div>
-              <div className="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between text-xs text-accent font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span>[ Khuyên dùng website ]</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </div>
-            </div>
-          </div>
-
-          {/* Sector 5: Corporate */}
-          <div className="overflow-hidden border border-border bg-white rounded-2xl shadow-sm hover:shadow-xl hover:border-accent/40 transition-all duration-300 group hover:-translate-y-1.5 flex flex-col justify-between min-h-[460px]">
-            <div className="relative w-full aspect-[16/10] overflow-hidden bg-slate-100">
-              <img
-                src="/sector_corporate.png"
-                alt="Website Doanh Nghiệp & Giới Thiệu Công Ty - CodeBy Đà Nẵng"
-                loading="lazy"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/10 to-transparent pointer-events-none"></div>
-            </div>
-            <div className="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <div className="flex justify-between items-start mb-5">
-                  <div className="w-10 h-10 bg-accent/5 text-accent rounded-xl flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-colors duration-300">
-                    <Briefcase className="w-5 h-5" />
-                  </div>
-                  <span className="text-[10px] font-sans font-bold px-2.5 py-1 bg-emerald-500/10 text-emerald-600 rounded-full">
-                    Tín Nhiệm B2B
-                  </span>
-                </div>
-                <h3 className="font-sans font-bold text-lg md:text-xl text-slate-900 mb-3 group-hover:text-accent transition-colors">
-                  Website Doanh Nghiệp & Giới Thiệu Công Ty
-                </h3>
-                <p className="text-slate-600 text-xs md:text-sm leading-relaxed">
-                  Xây dựng thương hiệu uy tín vượt trội, giới thiệu năng lực cốt lõi, dịch vụ/sản phẩm chi tiết và tích hợp form thu hút đối tác, báo giá B2B cao cấp.
-                </p>
-              </div>
-              <div className="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between text-xs text-accent font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span>[ Khuyên dùng website ]</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </div>
-            </div>
-          </div>
-
-          {/* Sector 6: F&B */}
-          <div className="overflow-hidden border border-border bg-white rounded-2xl shadow-sm hover:shadow-xl hover:border-accent/40 transition-all duration-300 group hover:-translate-y-1.5 flex flex-col justify-between min-h-[460px]">
-            <div className="relative w-full aspect-[16/10] overflow-hidden bg-slate-100">
-              <img
-                src="/sector_restaurant.png"
-                alt="Website Nhà Hàng & Quán Cafe (F&B) - CodeBy Đà Nẵng"
-                loading="lazy"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/10 to-transparent pointer-events-none"></div>
-            </div>
-            <div className="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <div className="flex justify-between items-start mb-5">
-                  <div className="w-10 h-10 bg-accent/5 text-accent rounded-xl flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-colors duration-300">
-                    <Utensils className="w-5 h-5" />
-                  </div>
-                  <span className="text-[10px] font-sans font-bold px-2.5 py-1 bg-accent/10 text-accent rounded-full">
-                    Menu & Đặt Bàn
-                  </span>
-                </div>
-                <h3 className="font-sans font-bold text-lg md:text-xl text-slate-900 mb-3 group-hover:text-accent transition-colors">
-                  Website Nhà Hàng & Quán Cafe (F&B)
-                </h3>
-                <p className="text-slate-600 text-xs md:text-sm leading-relaxed">
-                  Hiển thị menu thức ăn sinh động, biểu giá chân thực, tính năng đặt bàn trước giữ chỗ và kết nối bản đồ chỉ đường Google Maps trực quan.
-                </p>
-              </div>
-              <div className="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between text-xs text-accent font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span>[ Khuyên dùng website ]</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </section>
 

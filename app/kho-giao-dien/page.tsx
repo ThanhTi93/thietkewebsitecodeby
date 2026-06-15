@@ -116,7 +116,7 @@ const PROJECTS: DemoProject[] = [
     image: "https://cdn3290.cdn4s6.io.vn/media/landing03.webp",
     demoUrl: "https://web4s.vn/view-demo/landing03",
     note: "Có form nhập thông tin liên hệ và hiển thị sản phẩm nổi bật.",
-    tags: ["Form đăng ký", "Sản phẩm", "CTA"]
+    tags: ["Form đăng ký", "Sản phẩm"]
   },
   {
     id: 2,
@@ -125,7 +125,7 @@ const PROJECTS: DemoProject[] = [
     image: "https://cdn3290.cdn4s6.io.vn/media/landing05.webp",
     demoUrl: "https://web4s.vn/view-demo/landing05",
     note: "Bố cục hiện đại, thích hợp cho chiến dịch quảng cáo sản phẩm đơn lẻ.",
-    tags: ["Form thu thập", "Trưng bày", "Mobile UI"]
+    tags: ["Form thu thập", "Trưng bày"]
   },
   {
     id: 3,
@@ -134,7 +134,7 @@ const PROJECTS: DemoProject[] = [
     image: "https://cdn3290.cdn4s6.io.vn/media/landing04.webp",
     demoUrl: "https://web4s.vn/view-demo/landing04",
     note: "Thiết kế trực quan, tập trung vào tính năng sản phẩm và phản hồi khách hàng.",
-    tags: ["Form liên hệ", "Đánh giá", "Landing Page"]
+    tags: ["Form liên hệ", "Đánh giá"]
   },
   {
     id: 4,
@@ -143,7 +143,7 @@ const PROJECTS: DemoProject[] = [
     image: "https://cdn3290.cdn4s6.io.vn/media/landing09.webp",
     demoUrl: "https://web4s.vn/view-demo/landing09",
     note: "Giao diện bắt mắt, phù hợp giới thiệu các gói dịch vụ hoặc khóa học trực tuyến.",
-    tags: ["Form tư vấn", "Dịch vụ", "Chuyển đổi"]
+    tags: ["Form tư vấn", "Dịch vụ"]
   },
   {
     id: 5,
@@ -152,8 +152,9 @@ const PROJECTS: DemoProject[] = [
     image: "https://cdn3290.cdn4s6.io.vn/media/landing10.webp",
     demoUrl: "https://web4s.vn/view-demo/landing10",
     note: "Thiết kế tối giản, chuyên biệt cho việc thu thập thông tin tư vấn tài chính / bảo hiểm.",
-    tags: ["Form đăng ký", "Tối giản", "Tải nhanh"]
+    tags: ["Form đăng ký", "Tối giản"]
   },
+
 
   // CORPORATE / COMPANY
   {
@@ -405,15 +406,7 @@ const PROJECTS: DemoProject[] = [
   },
 
   // BOOKING / APPOINTMENT
-  {
-    id: 33,
-    title: "Website Xe Ghép (Duẩn)",
-    category: "booking",
-    image: "https://image.thum.io/get/width/800/crop/600/https://xeghep.dongphu.net/",
-    demoUrl: "https://xeghep.dongphu.net/",
-    note: "Chức năng đặt lịch đi xe ghép, chọn điểm đưa đón, thời gian và số lượng chỗ ngồi.",
-    tags: ["Đặt xe ghép", "Chọn chỗ", "Booking xe"]
-  },
+
   {
     id: 34,
     title: "Xe Quảng Ngãi - Đà Nẵng",
@@ -465,6 +458,16 @@ const PROJECTS: DemoProject[] = [
 
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState("landing-page");
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const categoryParam = params.get("category");
+      if (categoryParam && CATEGORIES.some((cat) => cat.id === categoryParam)) {
+        setActiveCategory(categoryParam);
+      }
+    }
+  }, []);
 
   const activeCategoryData = CATEGORIES.find((cat) => cat.id === activeCategory) || CATEGORIES[0];
 
@@ -593,17 +596,7 @@ export default function Portfolio() {
                 {/* Overlay gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
-                {/* Category & Badge overlay */}
-                <div className="absolute top-4 left-4 flex flex-wrap gap-1.5 z-10">
-                  {project.tags.slice(0, 2).map((tag, tIdx) => (
-                    <span
-                      key={tIdx}
-                      className="px-2.5 py-1 text-[10px] font-extrabold tracking-wider bg-white/90 backdrop-blur-sm text-slate-800 rounded-md uppercase"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+
 
                 {/* Accent Bottom Overlay bar on hover */}
                 <div className="absolute bottom-0 left-0 w-full h-[4px] bg-accent transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"></div>
@@ -622,7 +615,7 @@ export default function Portfolio() {
 
                 <div className="flex justify-between items-center pt-4 border-t border-slate-100">
                   <div className="flex flex-wrap gap-1">
-                    {project.tags.slice(2).map((tag, tIdx) => (
+                    {project.tags.map((tag, tIdx) => (
                       <span key={tIdx} className="text-[10px] text-slate-400 font-bold bg-slate-100 px-2 py-0.5 rounded">
                         #{tag}
                       </span>

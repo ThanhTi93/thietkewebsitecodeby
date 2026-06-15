@@ -32,7 +32,7 @@ export default function Header() {
             VỀ CHÚNG TÔI
             <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full"></span>
           </Link>
-          <Link href="/portfolio" className="hover:text-accent transition-colors relative py-2 group">
+          <Link href="/kho-giao-dien" className="hover:text-accent transition-colors relative py-2 group">
             KHO GIAO DIỆN
             <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full"></span>
           </Link>
@@ -73,7 +73,7 @@ export default function Header() {
           <Link href="/ve-chung-toi" onClick={() => setMobileMenuOpen(false)} className="hover:text-accent transition-colors border-b border-border/50 pb-3">
             VỀ CHÚNG TÔI
           </Link>
-          <Link href="/portfolio" onClick={() => setMobileMenuOpen(false)} className="hover:text-accent transition-colors border-b border-border/50 pb-3">
+          <Link href="/kho-giao-dien" onClick={() => setMobileMenuOpen(false)} className="hover:text-accent transition-colors border-b border-border/50 pb-3">
             KHO GIAO DIỆN
           </Link>
           <Link href="/lien-he" onClick={() => setMobileMenuOpen(false)} className="hover:text-accent transition-colors border-b border-border/50 pb-3">
